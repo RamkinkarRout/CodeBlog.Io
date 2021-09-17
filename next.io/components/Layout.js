@@ -16,7 +16,7 @@ export default function Layout({ title, descriptions, keywords, children }) {
       </Head>
       <Header />
       {router.pathname === "/" && <Hero />}
-      <div className="max-w-[1360px] mx-auto px-4">{children}</div>
+      <div className="max-w-[1360px] mx-auto py-4">{children}</div>
       <Footer />
     </>
   );

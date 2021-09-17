@@ -2,7 +2,7 @@ import Layout from "../components/Layout";
 import Random_Code from "../components/Random_Code";
 import Recent_Code from "../components/Recent_Code";
 export default function Home({ res, random }) {
-  console.log(random);
+  // console.log(random);
   return (
     <div>
       <Layout title={"Code.Io | Home"}>
@@ -45,7 +45,8 @@ export async function getStaticProps(context) {
   const res = await data.json();
   return {
     props: {
-      res: res,
+      // slicing to get exact 5 news
+      res: res.slice(0, 5),
       random: res[0],
     },
     revalidate: 1,

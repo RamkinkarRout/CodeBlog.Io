@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
+import { IoCodeSlashSharp } from "react-icons/io5";
 export default function Recent_Code({ name, slug, date, time, detail, image }) {
   return (
-    <div className="flex flex-col justify-start items-center space-y-4 border-b border-gray-500 ">
+    <div className="flex flex-col justify-start items-center space-y-4 border-b border-gray-500  px-4 py-3 shadow-lg">
       <Image
         src={image}
         alt="Post Image"
         width="700px"
-        height="400px"
+        height="500px"
         className="object-cover bg-no-repeat"
       />
       <div className="flex justify-between items-center w-full ">
@@ -22,7 +23,10 @@ export default function Recent_Code({ name, slug, date, time, detail, image }) {
         {detail}
       </p>
       <Link href="/blog">
-        <a>View All News</a>
+        <a className="text-blue-400 hover:text-blue-600 hover:underline text-base flex items-center ">
+          View All Posts
+          <IoCodeSlashSharp className="ml-2" fontSize="16px" />
+        </a>
       </Link>
     </div>
   );

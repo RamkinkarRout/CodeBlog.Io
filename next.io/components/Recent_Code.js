@@ -1,11 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import Truncate from "react-truncate";
+import { IoTelescope } from "react-icons/io5";
 export default function Recent_Code({ name, slug, date, time, detail, image }) {
-  console.log(slug);
+  // console.log(slug);
   return (
-    <div className="flex justify-between space-y-5 w-full items-center border-b border-gray-500 mb-3 ">
-      <div className="flex flex-col space-y-1 justify-items-center w-3/4">
+    <div className="flex justify-between space-y-5 w-full items-center border-b border-gray-500 mb-4 px-3 shadow-lg ">
+      <div className="flex flex-col space-y-1 justify-items-center w-3/4 ">
         <h1 className="text-lg tracking-wider font-bold text-gray-700">
           {name}
         </h1>
@@ -15,8 +16,11 @@ export default function Recent_Code({ name, slug, date, time, detail, image }) {
         >
           {detail}
         </Truncate>
-        <Link href={`/${slug}`}>
-          <a>Read More</a>
+        <Link href={`/code/${slug}`}>
+          <a className="text-blue-400 hover:text-blue-600 hover:underline text-base flex items-center ">
+            <IoTelescope className="mr-2" fontSize="15px" />
+            Read More
+          </a>
         </Link>
       </div>
       <div>

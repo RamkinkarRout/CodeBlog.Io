@@ -1,8 +1,8 @@
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 export default function Detail({ res }) {
-  console.log(res);
+  // console.log(res);
   return (
-    <Layout title={res.slug}>
+    <Layout title={`Code.Io | ${res.slug}`}>
       <div>{res.slug}</div>
     </Layout>
   );
@@ -22,7 +22,7 @@ export default function Detail({ res }) {
 // }
 
 export async function getServerSideProps(context) {
-  const { slug } = context.query;
+  const { slug } = context.query || null;
   const data = await fetch(`${process.env.API_URL}/api/${slug}`);
   const res = await data.json();
 
