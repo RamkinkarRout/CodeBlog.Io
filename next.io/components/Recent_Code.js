@@ -1,6 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 import Truncate from "react-truncate";
 export default function Recent_Code({ name, slug, date, time, detail, image }) {
+  console.log(slug);
   return (
     <div className="flex justify-between space-y-5 w-full items-center border-b border-gray-500 mb-3 ">
       <div className="flex flex-col space-y-1 justify-items-center w-3/4">
@@ -13,6 +15,9 @@ export default function Recent_Code({ name, slug, date, time, detail, image }) {
         >
           {detail}
         </Truncate>
+        <Link href={`/${slug}`}>
+          <a>Read More</a>
+        </Link>
       </div>
       <div>
         <Image src={image} width={120} height={80} className="object-contain" />

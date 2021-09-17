@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 export default function Recent_Code({ name, slug, date, time, detail, image }) {
   return (
     <div className="flex flex-col justify-start items-center space-y-4 border-b border-gray-500 ">
@@ -20,6 +21,9 @@ export default function Recent_Code({ name, slug, date, time, detail, image }) {
       <p className="text-md h-[168px] overflow-hidden text-gray-500 font-normal leading-sung tracking-wide">
         {detail}
       </p>
+      <Link href="/blog">
+        <a>View All News</a>
+      </Link>
     </div>
   );
 }
