@@ -2,7 +2,9 @@ import Head from "next/head";
 import Footer from "./Footer";
 import Header from "./Header";
 import Hero from "./Hero";
+import DisplayBar from "./DisplayBar";
 import { useRouter } from "next/router";
+import DisplayBarFlex from "./DisplayBarFlex";
 
 export default function Layout({ title, descriptions, keywords, children }) {
   const router = useRouter();
@@ -17,6 +19,8 @@ export default function Layout({ title, descriptions, keywords, children }) {
       <Header />
       {router.pathname === "/" && <Hero />}
       <div className="max-w-[1360px] mx-auto py-4">{children}</div>
+      {router.pathname === "/" && <DisplayBarFlex />}
+      {router.pathname === "/" && <DisplayBar />}
       <Footer />
     </>
   );

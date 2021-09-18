@@ -9,6 +9,9 @@ export default function Home({ res, random }) {
         <div className="flex my-5 flex-col md:flex-row justify-between items-start space-y-6 md:space-y-0 space-x-0 md:space-x-6">
           {/* -------------random code left-------------- */}
           <div className="max-w-3xl">
+            <h1 className="mb-2 font-light tracking-wide text-lg text-gray-500 p-4 border-l-4 border-l-gray-600 border border-b-gray-400">
+              Featured Article of the Day
+            </h1>
             <Random_Code
               key={random.id}
               name={random.name}
@@ -21,6 +24,9 @@ export default function Home({ res, random }) {
           </div>
           {/* ------------recent code right-------- */}
           <div className="flex flex-col justify-items-start w-full h-full">
+            <h1 className="mb-2 font-light tracking-wide text-lg text-gray-500 p-4 border-l-4 border-l-gray-600 border border-b-gray-400">
+              Recent Posts
+            </h1>
             {res &&
               res.map((item) => (
                 <Recent_Code

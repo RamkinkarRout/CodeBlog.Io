@@ -5,9 +5,9 @@ import { IoTelescope } from "react-icons/io5";
 export default function Recent_Code({ name, slug, date, time, detail, image }) {
   // console.log(slug);
   return (
-    <div className="flex justify-between space-y-5 w-full items-center border-b border-gray-500 mb-4 px-3 shadow-lg ">
+    <div className="flex justify-between space-y-4 w-full items-center border-b border-gray-500 mb-4 px-3 py-1 shadow-lg ">
       <div className="flex flex-col space-y-1 justify-items-center w-3/4 ">
-        <h1 className="text-lg tracking-wider font-bold text-gray-700">
+        <h1 className="text-lg tracking-wider font-semibold text-gray-700">
           {name}
         </h1>
         <Truncate

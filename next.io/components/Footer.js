@@ -1,13 +1,10 @@
 import Link from "next/link";
-import {
-  IoLogoFacebook,
-  IoLogoInstagram,
-  IoIosGitBranch,
-} from "react-icons/io";
+import { IoLogoFacebook, IoLogoInstagram } from "react-icons/io";
+import { IoLogoGithub } from "react-icons/io5";
 export default function Footer() {
   return (
     <>
-      <div className="items-center max-w-[1360px] mx-auto border border-b-gray-700 shadow-lg my-8 py-8 ">
+      <div className="items-center max-w-[1360px] mx-auto border-b-2 border-b-gray-700 shadow-lg my-8 py-8 ">
         <div className="flex flex-col sm:flex-row justify-between px-4 items-center space-y-4 sm:space-y-0">
           {/* --------------page routes--------- */}
           <div>
@@ -30,7 +27,7 @@ export default function Footer() {
           </div>
           {/* -------------social media routes------------- */}
           <div>
-            <ul className="flex space-x-4 mr-2 md:mr-0 leading-snug tracking-wide font-roboto text-gray-600 text-base md:text-lg">
+            <ul className="flex space-x-6 mr-2 md:mr-0 leading-snug tracking-wide font-roboto text-gray-600 text-base md:text-lg">
               <li>
                 <a
                   href="www.facebook.com"
@@ -44,7 +41,7 @@ export default function Footer() {
                   href="www.github.com"
                   className="hover:text-gray-900 transition transform hover:scale-150 duration-100 ease-in"
                 >
-                  <IoIosGitBranch fontSize="25px" />
+                  <IoLogoGithub fontSize="25px" />
                 </a>
               </li>
               <li>
