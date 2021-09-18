@@ -33,13 +33,12 @@ export default function Hero() {
             className="inline object-cover w-12 h-12 border-2 border-gray-700 rounded-full"
           />
           <p className="text-xl font-medium text-gray-600 tracking-wide">
-            Userof Code.Io
+            User of Code.Io
           </p>
         </div>
         <Button
           onClick={() => router.push("/blog")}
           variant="contained"
-          color={"primary"}
           style={{
             color: "#F3F4F6",
             backgroundColor: "#3B82F6",

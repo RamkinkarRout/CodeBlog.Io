@@ -10,19 +10,27 @@ export default function blog({ res }) {
       <Layout title={"Code.Io | Blog"}>
         {res &&
           res.map((item) => (
-            <div className="flex justify-between space-y-5 w-full items-center border-b border-gray-500 mb-2 shadow-lg px-4 py-2 ">
+            <div className="flex justify-between space-y-5 w-full items-center border-b border-gray-500 mb-2 shadow-md p-4 ">
+              <div>
+                <Image
+                  src={item.image}
+                  width={300}
+                  height={168}
+                  className="object-contain"
+                />
+              </div>
               <div className="flex flex-col space-y-4 justify-items-center w-3/4 ">
-                <div className="flex flex-col sm:flex-row justify-between items-center">
+                <div className="flex flex-col justify-between">
                   <h1 className="text-lg tracking-wider font-bold text-gray-700">
                     {item.name}
                   </h1>
-                  <h2 className="text-base tracking-wider font-bold text-gray-700">
+                  <h2 className="text-base tracking-wider font-light text-gray-700">
                     {item.date} : {item.time}
                   </h2>
                 </div>
                 <Truncate
                   lines={3}
-                  className="text-md text-gray-500 font-normal leading-sung tracking-wide"
+                  className="text-md text-gray-500 tracking-normal leading-normal"
                 >
                   {item.detail}
                 </Truncate>
@@ -32,14 +40,6 @@ export default function blog({ res }) {
                     Read More
                   </a>
                 </Link>
-              </div>
-              <div>
-                <Image
-                  src={item.image}
-                  width={300}
-                  height={188}
-                  className="object-contain"
-                />
               </div>
             </div>
           ))}

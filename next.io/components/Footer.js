@@ -4,7 +4,7 @@ import { IoLogoGithub } from "react-icons/io5";
 export default function Footer() {
   return (
     <>
-      <div className="items-center max-w-[1360px] mx-auto border-b-2 border-b-gray-700 shadow-lg my-8 py-8 ">
+      <div className="items-center max-w-[1360px] mx-auto border-b-2 border-b-gray-700 my-8 py-8 ">
         <div className="flex flex-col sm:flex-row justify-between px-4 items-center space-y-4 sm:space-y-0">
           {/* --------------page routes--------- */}
           <div>
@@ -30,7 +30,7 @@ export default function Footer() {
             <ul className="flex space-x-6 mr-2 md:mr-0 leading-snug tracking-wide font-roboto text-gray-600 text-base md:text-lg">
               <li>
                 <a
-                  href="www.facebook.com"
+                  href="https://www.facebook.com/ramkinkar.rout"
                   className="hover:text-blue-900 text-blue-500 transition transform hover:scale-150 duration-100 ease-in"
                 >
                   <IoLogoFacebook fontSize="25px" />
@@ -38,7 +38,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="www.github.com"
+                  href="https://github.com/RamkinkarRout?tab=repositories"
                   className="hover:text-gray-900 transition transform hover:scale-150 duration-100 ease-in"
                 >
                   <IoLogoGithub fontSize="25px" />
@@ -46,7 +46,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="www.instagram.com"
+                  href="https://www.instagram.com/iamramkinkarrout/"
                   className="hover:text-red-700  text-red-500 transition transform hover:scale-150 duration-100 ease-in"
                 >
                   <IoLogoInstagram fontSize="25px" />
