@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/code-blogs",
+      "handler": "code-blog.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/code-blogs/count",
+      "handler": "code-blog.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/code-blogs/:id",
+      "handler": "code-blog.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/code-blogs",
+      "handler": "code-blog.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/code-blogs/:id",
+      "handler": "code-blog.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/code-blogs/:id",
+      "handler": "code-blog.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

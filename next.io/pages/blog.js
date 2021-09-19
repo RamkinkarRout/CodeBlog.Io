@@ -15,11 +15,11 @@ export default function blog({ res, recent }) {
             recent.map((item) => (
               <NewestArticle
                 key={item.id}
-                name={item.name}
+                name={item.title}
                 slug={item.slug}
                 date={item.date}
                 time={item.time}
-                image={item.image}
+                image={item.image.formats.thumbnail.url}
                 detail={item.detail}
               />
             ))}
@@ -31,7 +31,7 @@ export default function blog({ res, recent }) {
             <div className="flex justify-between space-y-5 w-full items-center mb-2 shadow-md p-4 hover:bg-white duration-300">
               <div>
                 <Image
-                  src={item.image}
+                  src={item.image.formats.thumbnail.url}
                   width={300}
                   height={168}
                   className="object-contain"
@@ -40,7 +40,7 @@ export default function blog({ res, recent }) {
               <div className="flex flex-col space-y-4 justify-items-center w-3/4 ">
                 <div className="flex flex-col justify-between">
                   <h1 className="text-lg tracking-wider font-bold text-gray-700">
-                    {item.name}
+                    {item.title}
                   </h1>
                   <h2 className="text-base tracking-wider font-light text-gray-700">
                     {item.date} : {item.time}
@@ -66,7 +66,7 @@ export default function blog({ res, recent }) {
   );
 }
 export async function getStaticProps(context) {
-  const data = await fetch(`${process.env.API_URL}/api/code`);
+  const data = await fetch(`${process.env.API_URL}/code-blogs`);
   const res = await data.json();
   return {
     props: {

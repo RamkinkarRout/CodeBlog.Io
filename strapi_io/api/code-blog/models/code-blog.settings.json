@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "code_blogs",
+  "info": {
+    "name": "codeBlog",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "date": {
+      "type": "date"
+    },
+    "time": {
+      "type": "time"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "detail": {
+      "type": "richtext"
+    },
+    "subTitle": {
+      "type": "string"
+    },
+    "users": {
+      "plugin": "users-permissions",
+      "model": "role",
+      "via": "code_blogs"
+    }
+  }
+}

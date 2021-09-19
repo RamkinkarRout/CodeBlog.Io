@@ -17,11 +17,11 @@ export default function Home({ res, random, recent }) {
             </h1>
             <Random_Code
               key={random.id}
-              name={random.name}
+              name={random.title}
               slug={random.slug}
               date={random.date}
               time={random.time}
-              image={random.image}
+              image={random.image.formats.medium.url}
               detail={random.detail}
             />
           </div>
@@ -34,11 +34,11 @@ export default function Home({ res, random, recent }) {
               res.map((item) => (
                 <Recent_Code
                   key={item.id}
-                  name={item.name}
+                  name={item.title}
                   slug={item.slug}
                   date={item.date}
                   time={item.time}
-                  image={item.image}
+                  image={item.image.formats.thumbnail.url}
                   detail={item.detail}
                 />
               ))}
@@ -54,11 +54,11 @@ export default function Home({ res, random, recent }) {
               recent.map((item) => (
                 <NewestArticle
                   key={item.id}
-                  name={item.name}
+                  name={item.title}
                   slug={item.slug}
                   date={item.date}
                   time={item.time}
-                  image={item.image}
+                  image={item.image.formats.thumbnail.url}
                   detail={item.detail}
                 />
               ))}
@@ -80,15 +80,32 @@ export default function Home({ res, random, recent }) {
   );
 }
 
+// export async function getStaticProps(context) {
+//   const data = await fetch(`${process.env.API_URL}/code-blogs`);
+//   const res = await data.json();
+//   console.log(res);
+//   return {
+//     props: {
+//       // slicing to get exact 5 news
+//       res: res.slice(0, 5),
+//       recent: res.slice(0, 5),
+//       random: res[0],
+//     },
+//     revalidate: 1,
+//   };
+// }
 export async function getStaticProps(context) {
-  const data = await fetch(`${process.env.API_URL}/api/code`);
+  const data = await fetch(
+    `${process.env.API_URL}/code-blogs?_sort=date:ASC&_limit=10`
+  );
   const res = await data.json();
+  console.log(res);
   return {
     props: {
       // slicing to get exact 5 news
       res: res.slice(0, 5),
-      recent: res.slice(0, 5),
       random: res[0],
+      recent: res.slice(0, 5),
     },
     revalidate: 1,
   };
