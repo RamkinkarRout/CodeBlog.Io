@@ -16,7 +16,7 @@ export default function Header() {
             <Image
               src={headerPng}
               width={"80px"}
-              hieght={"10px"}
+              hieght={"1100px"}
               alt="Logo Image"
               className="object-contain"
             />
@@ -28,19 +28,19 @@ export default function Header() {
         {/* ----------------nav items--------------- */}
         <div>
           <ul className="flex space-x-4 sm:space-x-6 mr-2 md:mr-0 leading-snug tracking-wide font-roboto font-medium text-gray-600 text-base sm:text-lg">
-            <li className="hover:scale-110 duration-500 ease-in-out">
+            <li className="hover:scale-[1.05] duration-250 ease-in-out">
               <Link href="/blog">
-                <a className="hover:text-gray-900 ">Blog.Io</a>
+                <a className="hover:text-gray-900 duration-250">Blog.Io</a>
               </Link>
             </li>
-            <li className="hover:scale-110 duration-500 ease-in-out">
+            <li className="hover:scale-[1.05] duration-250 ease-in-out">
               <Link href="#">
-                <a className="hover:text-gray-900 ">Dashboard.Io</a>
+                <a className="hover:text-gray-900 duration-250">Dashboard.Io</a>
               </Link>
             </li>
-            <li className="hover:scale-110 duration-500 ease-in-out">
+            <li className="hover:scale-[1.05] duration-250 ease-in-out">
               <Link href="/about">
-                <a className="hover:text-gray-900 ">About.Io</a>
+                <a className="hover:text-gray-900 duration-250">About.Io</a>
               </Link>
             </li>
           </ul>

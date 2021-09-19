@@ -1,9 +1,29 @@
 import Layout from "../../components/Layout";
+import Image from "next/image";
 export default function Detail({ res }) {
   // console.log(res);
   return (
     <Layout title={`Code.Io | ${res.slug}`}>
-      <div>{res.slug}</div>
+      <div className="flex flex-col p-4 items-start space-y-4 ">
+        <h1 className="text-3xl font-semibold tracking-wider leading-relaxed text-gray-600 p-4 border-l-4 border-l-gray-700 shadow-lg">
+          {res.name}
+        </h1>
+        <p className="text-md tracking-wider text-gray-500 font-light">
+          {res.date} : {res.time}
+        </p>
+        <Image
+          src={res.image}
+          width={"1100px"}
+          height={"750px"}
+          className="object-contain"
+        ></Image>
+        <h2 className="text-2xl font-light tracking-wider leading-relaxed text-gray-600 p-4 border-l-4 border-l-gray-700 shadow-lg">
+          Read Full Article :
+        </h2>
+        <p className="text-gray-700 text-lg leading-relaxed tracking-normal">
+          {res.detail}
+        </p>
+      </div>
     </Layout>
   );
 }

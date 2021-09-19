@@ -1,7 +1,10 @@
+import { Button } from "@material-ui/core";
 import Layout from "../components/Layout";
+import NewestArticle from "../components/NewestArticle";
 import Random_Code from "../components/Random_Code";
 import Recent_Code from "../components/Recent_Code";
-export default function Home({ res, random }) {
+import router from "next/router";
+export default function Home({ res, random, recent }) {
   // console.log(random);
   return (
     <div>
@@ -41,6 +44,37 @@ export default function Home({ res, random }) {
               ))}
           </div>
         </div>
+        {/* ----------To Render Slice from 5-10 articles----------- */}
+        <div className="flex flex-col  justify-between space-y-6">
+          <h1 className="text-2xl leading-relaxed tracking-wider font-light  text-gray-700 p-4 shadow-lg border-l-4 border-l-gray-700 border border-b-gray-400">
+            Read Our Newest Articles:
+          </h1>
+          <div className="flex flex-col sm:flex-row items-center justify-between space-x-0 sm:space-x-4 space-y-4 sm:space-y-0">
+            {recent &&
+              recent.map((item) => (
+                <NewestArticle
+                  key={item.id}
+                  name={item.name}
+                  slug={item.slug}
+                  date={item.date}
+                  time={item.time}
+                  image={item.image}
+                  detail={item.detail}
+                />
+              ))}
+          </div>
+          <Button
+            onClick={() => router.push("/blog")}
+            variant="contained"
+            style={{
+              color: "#F3F4F6",
+              backgroundColor: "#3B82F6",
+              width: "250px",
+            }}
+          >
+            Read All Articles
+          </Button>
+        </div>
       </Layout>
     </div>
   );
@@ -53,6 +87,7 @@ export async function getStaticProps(context) {
     props: {
       // slicing to get exact 5 news
       res: res.slice(0, 5),
+      recent: res.slice(0, 5),
       random: res[0],
     },
     revalidate: 1,

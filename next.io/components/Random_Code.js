@@ -3,7 +3,7 @@ import Link from "next/link";
 import { IoCodeSlashSharp } from "react-icons/io5";
 export default function Recent_Code({ name, slug, date, time, detail, image }) {
   return (
-    <div className="flex flex-col justify-start items-center space-y-4 border-b border-gray-500  px-4 py-4 shadow-lg">
+    <div className="flex flex-col justify-start items-center space-y-4 border-b border-gray-500  px-4 py-4 shadow-lg hover:bg-white duration-300">
       <Image
         src={image}
         alt="Post Image"

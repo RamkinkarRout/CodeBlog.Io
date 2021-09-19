@@ -1,16 +1,34 @@
 import Layout from "../components/Layout";
+import NewestArticle from "../components/NewestArticle";
 import Truncate from "react-truncate";
 import Link from "next/link";
 import Image from "next/image";
 import { IoTelescope } from "react-icons/io5";
-export default function blog({ res }) {
+export default function blog({ res, recent }) {
   // console.log(res);
   return (
     <div>
       <Layout title={"Code.Io | Blog"}>
+        {/* ------------------top 5 flex---------------- */}
+        <div className="flex flex-col sm:flex-row items-center justify-between space-x-0 sm:space-x-4 space-y-4 sm:space-y-0 mb-8">
+          {recent &&
+            recent.map((item) => (
+              <NewestArticle
+                key={item.id}
+                name={item.name}
+                slug={item.slug}
+                date={item.date}
+                time={item.time}
+                image={item.image}
+                detail={item.detail}
+              />
+            ))}
+        </div>
+
+        {/* -------------end of top 5 flex----------- */}
         {res &&
           res.map((item) => (
-            <div className="flex justify-between space-y-5 w-full items-center border-b border-gray-500 mb-2 shadow-md p-4 ">
+            <div className="flex justify-between space-y-5 w-full items-center mb-2 shadow-md p-4 hover:bg-white duration-300">
               <div>
                 <Image
                   src={item.image}
@@ -53,6 +71,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       res,
+      recent: res.slice(0, 5),
     },
     revalidate: 1,
   };
