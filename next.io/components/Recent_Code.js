@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Truncate from "react-truncate";
 import { IoTelescope } from "react-icons/io5";
+import marked from "marked";
 export default function Recent_Code({ name, slug, date, time, detail, image }) {
   // console.log(slug);
   return (
@@ -14,7 +15,7 @@ export default function Recent_Code({ name, slug, date, time, detail, image }) {
           lines={3}
           className="text-md text-gray-500 font-normal leading-sung tracking-wide"
         >
-          {detail}
+          <div dangerouslySetInnerHTML={{ __html: marked(detail) }}></div>
         </Truncate>
         <Link href={`/code/${slug}`}>
           <a className="text-blue-400 hover:text-blue-600 hover:underline text-base flex items-center ">

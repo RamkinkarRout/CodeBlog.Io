@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import marked from "marked";
 import { IoCodeSlashSharp } from "react-icons/io5";
 export default function Recent_Code({ name, slug, date, time, detail, image }) {
   return (
@@ -11,7 +12,7 @@ export default function Recent_Code({ name, slug, date, time, detail, image }) {
         height="506px"
         className="object-cover bg-no-repeat"
       />
-      <div className="flex flex-col justify-between  w-full ">
+      <div className="flex flex-col justify-between w-full ">
         <h1 className="text-2xl tracking-wider font-semibold text-gray-700">
           {name}
         </h1>
@@ -19,9 +20,11 @@ export default function Recent_Code({ name, slug, date, time, detail, image }) {
           {date} : {time}
         </p>
       </div>
-      <p className="text-md h-[168px] overflow-hidden text-gray-500 font-normal leading-sung tracking-wide">
-        {detail}
-      </p>
+
+      <div
+        className="text-md max-h-[168px] overflow-hidden ml-7 text-gray-500 font-normal leading-sung tracking-wide"
+        dangerouslySetInnerHTML={{ __html: marked(detail) }}
+      ></div>
       <Link href="/blog">
         <a className="text-blue-400 hover:text-blue-600 hover:underline text-base flex items-center ">
           View All Posts

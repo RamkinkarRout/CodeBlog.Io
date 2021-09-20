@@ -3,6 +3,7 @@ import NewestArticle from "../components/NewestArticle";
 import Truncate from "react-truncate";
 import Link from "next/link";
 import Image from "next/image";
+import marked from "marked";
 import { IoTelescope } from "react-icons/io5";
 export default function blog({ res, recent }) {
   // console.log(res);
@@ -50,9 +51,11 @@ export default function blog({ res, recent }) {
                   lines={3}
                   className="text-md text-gray-500 tracking-normal leading-normal"
                 >
-                  {item.detail}
+                  <div
+                    dangerouslySetInnerHTML={{ __html: marked(item.detail) }}
+                  ></div>
                 </Truncate>
-                <Link href={`/code/${item.slug}`}>
+                <Link href={"/code/[slug]"} as={`/code/${item.slug}`}>
                   <a className="text-blue-400 hover:text-blue-600 hover:underline text-base flex items-center ">
                     <IoTelescope className="mr-2" fontSize="15px" />
                     Read More

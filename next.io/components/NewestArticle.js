@@ -1,3 +1,4 @@
+import marked from "marked";
 import Image from "next/image";
 import router from "next/router";
 import Truncate from "react-truncate";
@@ -20,13 +21,13 @@ export default function NewestArticle({ image, name, date, detail, slug }) {
         <h1 className="text-lg leading-snug tracking snug font-semibold text-gray-700 mb-2 ">
           {name}
         </h1>
+        <p className="font-light mt-2 text-gray-500 ">{date}</p>
         <Truncate
           lines={3}
-          className="text-md text-gray-500 font-normal leading-sung tracking-normal"
+          className="py-2 text-md text-gray-500 font-normal leading-sung tracking-normal"
         >
-          {detail}
+          <div dangerouslySetInnerHTML={{ __html: marked(detail) }}></div>
         </Truncate>
-        <p className="font-light mt-2 text-gray-800 ">{date}</p>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import Layout from "../../components/Layout";
 import Image from "next/image";
+import marked from "marked";
 export default function Detail({ res }) {
   // console.log(res);
   return (
@@ -15,7 +16,7 @@ export default function Detail({ res }) {
           {res.date} : {res.time}
         </p>
         <Image
-          src={res.image.formats.medium.url}
+          src={res.image.formats.large.url}
           width={"1100px"}
           height={"750px"}
           className="object-contain"
@@ -23,9 +24,10 @@ export default function Detail({ res }) {
         <h2 className="text-2xl font-light tracking-wider leading-relaxed text-gray-600 p-4 border-l-4 border-l-gray-700 shadow-lg">
           Read Full Article :
         </h2>
-        <p className="text-gray-700 text-lg leading-relaxed tracking-normal">
-          {res.detail}
-        </p>
+        <div
+          dangerouslySetInnerHTML={{ __html: marked(res.detail) }}
+          className="text-gray-700 text-lg leading-relaxed tracking-normal"
+        ></div>
       </div>
     </Layout>
   );
@@ -44,14 +46,40 @@ export default function Detail({ res }) {
 //   };
 // }
 
-export async function getServerSideProps(context) {
-  const { slug } = context.query || null;
+// export async function getServerSideProps(context) {
+//   const { slug } = context.query || null;
+//   console.log(slug);
+//   const data = await fetch(`${process.env.API_URL}/code-blogs?=${slug}`);
+//   const res = await data.json();
+//   console.log(res);
+//   // console.log(res.image.formats.large.url);
+//   return {
+//     props: {
+//       res: res[0],
+//     },
+//   };
+// }
+
+export async function getStaticPaths() {
+  const res = await fetch(`${process.env.API_URL}/code-blogs`);
+  const code = await res.json();
+  const paths = code.map((item) => ({
+    params: { slug: item.slug },
+  }));
+
+  return {
+    paths,
+    fallback: true,
+  };
+}
+
+export async function getStaticProps({ params: { slug } }) {
   const data = await fetch(`${process.env.API_URL}/code-blogs?=${slug}`);
   const res = await data.json();
-  console.log(res);
   return {
     props: {
-      res: res[0],
+      res,
     },
+    revalidate: 1,
   };
 }
