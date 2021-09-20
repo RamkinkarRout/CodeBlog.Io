@@ -22,7 +22,7 @@ export default function Recent_Code({ name, slug, date, time, detail, image }) {
       </div>
 
       <div
-        className="text-md max-h-[168px] overflow-hidden ml-7 text-gray-500 font-normal leading-sung tracking-wide"
+        className="text-md max-h-[168px] overflow-hidden text-gray-500 font-normal leading-sung tracking-wide"
         dangerouslySetInnerHTML={{ __html: marked(detail) }}
       ></div>
       <Link href="/blog">

@@ -69,7 +69,7 @@ export default function blog({ res, recent }) {
   );
 }
 export async function getStaticProps(context) {
-  const data = await fetch(`${process.env.API_URL}/code-blogs`);
+  const data = await fetch(`${process.env.API_URL}/codes`);
   const res = await data.json();
   return {
     props: {

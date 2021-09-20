@@ -96,7 +96,7 @@ export default function Home({ res, random, recent }) {
 // }
 export async function getStaticProps(context) {
   const data = await fetch(
-    `${process.env.API_URL}/code-blogs?_sort=date:ASC&_limit=10`
+    `${process.env.API_URL}/codes?_sort=date:ASC&_limit=10`
   );
   const res = await data.json();
   console.log(res);

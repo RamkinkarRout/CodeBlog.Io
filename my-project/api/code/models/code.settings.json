@@ -1,9 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "code_blogs",
+  "collectionName": "codes",
   "info": {
-    "name": "codeBlog",
-    "description": ""
+    "name": "code"
   },
   "options": {
     "increments": true,
@@ -15,15 +14,15 @@
     "title": {
       "type": "string"
     },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
     "date": {
       "type": "date"
     },
     "time": {
       "type": "time"
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "title"
     },
     "image": {
       "model": "file",
@@ -40,13 +39,13 @@
     "detail": {
       "type": "richtext"
     },
-    "subTitle": {
-      "type": "string"
-    },
-    "users": {
+    "users_permissions_user": {
       "plugin": "users-permissions",
-      "model": "role",
-      "via": "code_blogs"
+      "model": "user",
+      "via": "codes"
+    },
+    "subtitle": {
+      "type": "string"
     }
   }
 }

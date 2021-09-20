@@ -10,13 +10,13 @@ export default function Detail({ res }) {
           {res.title}
         </h1>
         <p className="text-md tracking-wider text-gray-500 font-medium mb-1">
-          {res.subTitle}
+          {res.subtitle}
         </p>
         <p className="text-md tracking-wider text-gray-500 font-light">
           {res.date} : {res.time}
         </p>
         <Image
-          src={res.image.formats.large.url}
+          src={res.image.formats.medium.url}
           width={"1100px"}
           height={"750px"}
           className="object-contain"
@@ -46,40 +46,40 @@ export default function Detail({ res }) {
 //   };
 // }
 
-// export async function getServerSideProps(context) {
-//   const { slug } = context.query || null;
-//   console.log(slug);
-//   const data = await fetch(`${process.env.API_URL}/code-blogs?=${slug}`);
-//   const res = await data.json();
-//   console.log(res);
-//   // console.log(res.image.formats.large.url);
-//   return {
-//     props: {
-//       res: res[0],
-//     },
-//   };
-// }
-
-export async function getStaticPaths() {
-  const res = await fetch(`${process.env.API_URL}/code-blogs`);
-  const code = await res.json();
-  const paths = code.map((item) => ({
-    params: { slug: item.slug },
-  }));
-
-  return {
-    paths,
-    fallback: true,
-  };
-}
-
-export async function getStaticProps({ params: { slug } }) {
-  const data = await fetch(`${process.env.API_URL}/code-blogs?=${slug}`);
+export async function getServerSideProps(context) {
+  const { slug } = context.query || null;
+  console.log(slug);
+  const data = await fetch(`${process.env.API_URL}/codes/${slug}`);
   const res = await data.json();
+  // console.log(res);
+  // console.log(res.image.formats.large.url);
   return {
     props: {
       res,
     },
-    revalidate: 1,
   };
 }
+
+// export async function getStaticPaths() {
+//   const res = await fetch(`${process.env.API_URL}/codes`);
+//   const code = await res.json();
+//   const paths = code.map((item) => ({
+//     params: { slug: item.slug },
+//   }));
+
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// }
+
+// export async function getStaticProps({ params: { slug } }) {
+//   const data = await fetch(`${process.env.API_URL}/codes/${slug}`);
+//   const res = await data.json();
+//   return {
+//     props: {
+//       res,
+//     },
+//     revalidate: 1,
+//   };
+// }
