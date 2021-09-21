@@ -34,7 +34,7 @@ export default function Header() {
               </Link>
             </li>
             <li className="hover:scale-[1.05] duration-250 ease-in-out">
-              <Link href="#">
+              <Link href="/dashboard">
                 <a className="hover:text-gray-900 duration-250">Dashboard.Io</a>
               </Link>
             </li>

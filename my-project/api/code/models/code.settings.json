@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "codes",
   "info": {
-    "name": "code"
+    "name": "code",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -19,10 +20,7 @@
       "targetField": "title"
     },
     "date": {
-      "type": "date"
-    },
-    "time": {
-      "type": "time"
+      "type": "datetime"
     },
     "image": {
       "model": "file",
@@ -45,6 +43,9 @@
       "via": "codes"
     },
     "subtitle": {
+      "type": "string"
+    },
+    "time": {
       "type": "string"
     }
   }

@@ -29,7 +29,10 @@ export default function blog({ res, recent }) {
         {/* -------------end of top 5 flex----------- */}
         {res &&
           res.map((item) => (
-            <div className="flex justify-between space-y-5 w-full items-center mb-2 shadow-md p-4 hover:bg-white duration-300">
+            <div
+              key={item.id}
+              className="flex justify-between space-y-5 w-full items-center mb-2 shadow-md p-4 hover:bg-white duration-300"
+            >
               <div>
                 <Image
                   src={item.image.formats.thumbnail.url}
@@ -68,7 +71,7 @@ export default function blog({ res, recent }) {
     </div>
   );
 }
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const data = await fetch(`${process.env.API_URL}/codes`);
   const res = await data.json();
   return {

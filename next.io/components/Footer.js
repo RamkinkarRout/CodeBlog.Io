@@ -10,7 +10,7 @@ export default function Footer() {
           <div>
             <ul className="flex space-x-4 mr-2 md:mr-0 leading-snug tracking-wide font-roboto font-medium text-gray-600 text-base md:text-lg">
               <li>
-                <Link href="#">
+                <Link href="/blog">
                   <a className="hover:text-gray-900 transition transform hover:scale-150 duration-100 ease-in">
                     Blog.Io
                   </a>

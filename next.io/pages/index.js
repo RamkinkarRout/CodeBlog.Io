@@ -99,7 +99,7 @@ export async function getStaticProps(context) {
     `${process.env.API_URL}/codes?_sort=date:ASC&_limit=10`
   );
   const res = await data.json();
-  console.log(res);
+  // console.log(res);
   return {
     props: {
       // slicing to get exact 5 news

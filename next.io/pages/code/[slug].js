@@ -46,40 +46,40 @@ export default function Detail({ res }) {
 //   };
 // }
 
-export async function getServerSideProps(context) {
-  const { slug } = context.query || null;
-  console.log(slug);
-  const data = await fetch(`${process.env.API_URL}/codes/${slug}`);
-  const res = await data.json();
-  // console.log(res);
-  // console.log(res.image.formats.large.url);
-  return {
-    props: {
-      res,
-    },
-  };
-}
-
-// export async function getStaticPaths() {
-//   const res = await fetch(`${process.env.API_URL}/codes`);
-//   const code = await res.json();
-//   const paths = code.map((item) => ({
-//     params: { slug: item.slug },
-//   }));
-
-//   return {
-//     paths,
-//     fallback: true,
-//   };
-// }
-
-// export async function getStaticProps({ params: { slug } }) {
+// export async function getServerSideProps(context) {
+//   const { slug } = context.query || null;
+//   console.log(slug);
 //   const data = await fetch(`${process.env.API_URL}/codes/${slug}`);
 //   const res = await data.json();
+//   // console.log(res);
+//   // console.log(res.image.formats.large.url);
 //   return {
 //     props: {
 //       res,
 //     },
-//     revalidate: 1,
 //   };
 // }
+
+export async function getStaticPaths() {
+  const res = await fetch(`${process.env.API_URL}/codes`);
+  const code = await res.json();
+  const paths = code.map((item) => ({
+    params: { slug: item.slug },
+  }));
+
+  return {
+    paths,
+    fallback: true,
+  };
+}
+
+export async function getStaticProps({ params: { slug } }) {
+  const data = await fetch(`${process.env.API_URL}/codes/${slug}`);
+  const res = await data.json();
+  return {
+    props: {
+      res,
+    },
+    revalidate: 1,
+  };
+}
