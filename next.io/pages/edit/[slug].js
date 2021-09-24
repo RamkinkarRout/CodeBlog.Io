@@ -1,23 +1,22 @@
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import Link from "next/link";
-
 import {
   RiFileTextFill,
   RiHomeWifiFill,
   RiCalendarTodoFill,
 } from "react-icons/ri";
-
 import "react-toastify/dist/ReactToastify.css";
 import router from "next/router";
-export default function dashboard() {
+import moment from "moment";
+export default function edit({ res }) {
   const [values, setvalues] = useState({
-    title: "",
-    subtitle: "",
-    date: "",
-    time: "",
-    detail: "",
+    title: res.title,
+    subtitle: res.subtitle,
+    date: moment(res.date).format("yyyy-MM-DD"),
+    time: res.time,
+    detail: res.detail,
   });
 
   const { title, subtitle, date, time, detail } = values;
@@ -29,8 +28,10 @@ export default function dashboard() {
       toast.error("Please Fill all Input Fields");
     }
     // ----making call to Strapi------------
-    const response = await fetch(`http://localhost:1337/codes`, {
-      method: "POST",
+    // console.log(res.id);
+    // http://localhost:1337/codes/${res.id}
+    const response = await fetch(`http://localhost:1337/codes/${res.id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -40,7 +41,7 @@ export default function dashboard() {
       toast.error("Something Went Wrong");
     } else {
       const code = await response.json();
-      console.log(code.slug);
+      // console.log(code.slug);
       router.push(`/code/${code.slug}`);
     }
   };
@@ -51,14 +52,14 @@ export default function dashboard() {
     setvalues({ ...values, [name]: value });
   };
   return (
-    <Layout title={"Code.Io | Edit"}>
+    <Layout title={"Code.Io | Dashboard"}>
       <div className="flex flex-col justify-between space-y-8 p-4">
         <div className="space-y-5 ">
           <h1 className="text-3xl font-semibold tracking-wider leading-relaxed text-gray-600 p-4 border-l-4 border-l-gray-700 shadow-lg">
-            Welcome To your Dashboard
+            {res.title}
           </h1>
           <p className="text-base tracking-wider text-gray-500 font-medium">
-            Here you can create your own blog post in no time
+            Here you can Edit your own blog post and even add your Iamge
           </p>
         </div>
         {/* --------------------add form-------------- */}
@@ -160,7 +161,7 @@ export default function dashboard() {
             <div className="mb-4 flex items-center space-x-4">
               <input
                 type="submit"
-                value="Add Article"
+                value="Update Article"
                 className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer"
               />
               <Link href={"/"}>
@@ -175,4 +176,16 @@ export default function dashboard() {
       </div>
     </Layout>
   );
+}
+export async function getServerSideProps(context) {
+  const { slug } = context.query;
+  console.log(slug);
+  const data = await fetch(`${process.env.API_URL}/codes/${slug}`);
+  const res = await data.json();
+
+  return {
+    props: {
+      res,
+    },
+  };
 }

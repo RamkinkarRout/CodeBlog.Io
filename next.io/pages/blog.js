@@ -4,6 +4,7 @@ import Truncate from "react-truncate";
 import Link from "next/link";
 import Image from "next/image";
 import marked from "marked";
+import moment from "moment";
 import { IoTelescope } from "react-icons/io5";
 export default function blog({ res, recent }) {
   // console.log(res);
@@ -18,7 +19,7 @@ export default function blog({ res, recent }) {
                 key={item.id}
                 name={item.title}
                 slug={item.slug}
-                date={item.date}
+                date={moment(item.date).format("yyyy-MM-DD")}
                 time={item.time}
                 image={item.image.formats.thumbnail.url}
                 detail={item.detail}
@@ -47,7 +48,7 @@ export default function blog({ res, recent }) {
                     {item.title}
                   </h1>
                   <h2 className="text-base tracking-wider font-light text-gray-700">
-                    {item.date} : {item.time}
+                    {moment(item.date).format("yyyy-MM-DD")} : {item.time}
                   </h2>
                 </div>
                 <Truncate

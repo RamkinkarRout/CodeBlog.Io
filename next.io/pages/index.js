@@ -4,6 +4,7 @@ import NewestArticle from "../components/NewestArticle";
 import Random_Code from "../components/Random_Code";
 import Recent_Code from "../components/Recent_Code";
 import router from "next/router";
+import moment from "moment";
 export default function Home({ res, random, recent }) {
   // console.log(random);
   return (
@@ -19,7 +20,7 @@ export default function Home({ res, random, recent }) {
               key={random.id}
               name={random.title}
               slug={random.slug}
-              date={random.date}
+              date={moment(random.date).format("yyyy-MM-DD")}
               time={random.time}
               image={random.image.formats.medium.url}
               detail={random.detail}
@@ -36,7 +37,7 @@ export default function Home({ res, random, recent }) {
                   key={item.id}
                   name={item.title}
                   slug={item.slug}
-                  date={item.date}
+                  date={moment(item.date).format("yyyy-MM-DD")}
                   time={item.time}
                   image={item.image.formats.thumbnail.url}
                   detail={item.detail}
@@ -56,7 +57,7 @@ export default function Home({ res, random, recent }) {
                   key={item.id}
                   name={item.title}
                   slug={item.slug}
-                  date={item.date}
+                  date={moment(item.date).format("yyyy-MM-DD")}
                   time={item.time}
                   image={item.image.formats.thumbnail.url}
                   detail={item.detail}

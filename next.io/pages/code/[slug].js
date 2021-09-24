@@ -1,19 +1,73 @@
 import Layout from "../../components/Layout";
 import Image from "next/image";
 import marked from "marked";
+import moment from "moment";
+import { ToastContainer, toast } from "react-toastify";
+import Link from "next/link";
+import { Button } from "@material-ui/core";
+import router from "next/router";
+
 export default function Detail({ res }) {
   // console.log(res);
+
+  const handelDelete = async (e) => {
+    if (window.confirm("Are you Sure you want to Delete the Article")) {
+      const response = await fetch(`http://localhost:1337/codes/${res.id}`, {
+        method: "DELETE",
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        toast.error(data.message);
+      } else {
+        router.push("/blog");
+      }
+    }
+  };
   return (
     <Layout title={`Code.Io | ${res.slug}`}>
-      <div className="flex flex-col p-4 items-start space-y-4 ">
-        <h1 className="text-3xl font-semibold tracking-wider leading-relaxed text-gray-600 p-4 border-l-4 border-l-gray-700 shadow-lg">
-          {res.title}
-        </h1>
+      <div className="flex flex-col p-4 items-start space-y-4">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-x-0 md:space-x-16 space-y-8 md:space-y-0">
+          <h1 className="text-3xl font-semibold tracking-wider leading-relaxed text-gray-600 p-4 border-l-4 border-l-gray-700 shadow-lg">
+            {res.title}
+          </h1>
+          <div className="items-center space-x-2">
+            <ToastContainer />
+            <Link href={"/edit/[slug]"} as={`/edit/${res.slug}`}>
+              <Button
+                variant="contained"
+                style={{
+                  color: "#F3F4F6",
+                  backgroundColor: "#95B9C7",
+                  width: "150px",
+                  height: "40px",
+                }}
+              >
+                Edit
+              </Button>
+            </Link>
+            {/* <Link href={"/edit/[id]"} as={`/edit/${res.id}`}> */}
+
+            <Button
+              variant="contained"
+              style={{
+                color: "#F3F4F6",
+                backgroundColor: "#E41B17",
+                width: "150px",
+                height: "40px",
+              }}
+              onClick={handelDelete}
+            >
+              Delete
+            </Button>
+            {/* </Link> */}
+          </div>
+        </div>
         <p className="text-md tracking-wider text-gray-500 font-medium mb-1">
           {res.subtitle}
         </p>
         <p className="text-md tracking-wider text-gray-500 font-light">
-          {res.date} : {res.time}
+          {moment(res.date).format("yyyy-MM-DD")} : {res.time}
         </p>
         <Image
           src={res.image.formats.medium.url}
