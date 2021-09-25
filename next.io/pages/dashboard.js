@@ -2,6 +2,7 @@ import Layout from "../components/Layout";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import Link from "next/link";
+import PopupModal from "../components/PopupModal";
 
 import {
   RiFileTextFill,
@@ -44,11 +45,16 @@ export default function dashboard() {
       router.push(`/code/${code.slug}`);
     }
   };
-
   const handelInputChange = (e) => {
     const { name, value } = e.target;
     // console.log(name, value);
     setvalues({ ...values, [name]: value });
+  };
+
+  const imageUpload = async (e) => {
+    const res = await fetch("http://localhost:1337/codes");
+    const data = res.json();
+    console.log("success");
   };
   return (
     <Layout title={"Code.Io | Edit"}>
@@ -157,11 +163,12 @@ export default function dashboard() {
                 onChange={handelInputChange}
               />
             </div>
-            <div className="mb-4 flex items-center space-x-4">
+            <PopupModal imageUpload={imageUpload} />
+            <div className="my-4 flex items-center space-x-4 justify-center">
               <input
                 type="submit"
                 value="Add Article"
-                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer"
+                className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-11 rounded-md focus:outline-none focus:shadow-outline cursor-pointer"
               />
               <Link href={"/"}>
                 <a className="flex items-center underline text-gray-600 font-lg tracking-wide hover:text-blue-600">

@@ -35,12 +35,14 @@ export default function blog({ res, recent }) {
               className="flex justify-between space-y-5 w-full items-center mb-2 shadow-md p-4 hover:bg-white duration-300"
             >
               <div>
-                <Image
-                  src={item.image.formats.thumbnail.url}
-                  width={300}
-                  height={168}
-                  className="object-contain"
-                />
+                {item.image && (
+                  <Image
+                    src={item.image.formats.thumbnail.url}
+                    width={300}
+                    height={168}
+                    className="object-contain"
+                  />
+                )}
               </div>
               <div className="flex flex-col space-y-4 justify-items-center w-3/4 ">
                 <div className="flex flex-col justify-between">
