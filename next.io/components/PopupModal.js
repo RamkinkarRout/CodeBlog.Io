@@ -4,6 +4,9 @@ import Button from "@material-ui/core/Button";
 import Modal from "@material-ui/core/Modal";
 import { IoCloseCircleSharp } from "react-icons/io5";
 
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
+
 function rand() {
   return Math.round(Math.random() * 20) - 10;
 }
@@ -33,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SimpleModal({ imageUpload }) {
+export default function SimpleModal({ imageUpload, codesId }) {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
@@ -45,14 +48,17 @@ export default function SimpleModal({ imageUpload }) {
 
   const handleClose = () => {
     setOpen(false);
+    toast.success(
+      "Your Image is uploaded to our Backend,It ll show on your Article sortly"
+    );
   };
 
   const handelSubmit = async (e) => {
     e.preventDefault();
-    const formData = new formData();
+    const formData = new FormData();
     formData.append("files", image);
     formData.append("ref", "codes");
-    // formData.append("refId", codesId);
+    formData.append("refId", codesId);
     formData.append("field", "image");
 
     const res = await fetch(`http://localhost:1337/upload`, {
@@ -64,11 +70,13 @@ export default function SimpleModal({ imageUpload }) {
     }
   };
   const handelFileChange = (e) => {
+    // console.log(e.target.files);
     setImage(e.target.files[0]);
   };
 
   return (
     <div>
+      <ToastContainer />
       <Button
         variant="contained"
         style={{

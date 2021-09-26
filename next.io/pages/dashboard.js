@@ -2,7 +2,6 @@ import Layout from "../components/Layout";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import Link from "next/link";
-import PopupModal from "../components/PopupModal";
 
 import {
   RiFileTextFill,
@@ -51,11 +50,6 @@ export default function dashboard() {
     setvalues({ ...values, [name]: value });
   };
 
-  const imageUpload = async (e) => {
-    const res = await fetch("http://localhost:1337/codes");
-    const data = res.json();
-    console.log("success");
-  };
   return (
     <Layout title={"Code.Io | Edit"}>
       <div className="flex flex-col justify-between space-y-8 p-4">
@@ -163,7 +157,7 @@ export default function dashboard() {
                 onChange={handelInputChange}
               />
             </div>
-            <PopupModal imageUpload={imageUpload} />
+
             <div className="my-4 flex items-center space-x-4 justify-center">
               <input
                 type="submit"

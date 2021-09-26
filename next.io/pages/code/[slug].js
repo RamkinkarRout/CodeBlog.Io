@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Link from "next/link";
 import { Button } from "@material-ui/core";
 import router from "next/router";
+import bg1 from "../../public/bg1.jpg";
 
 export default function Detail({ res }) {
   // console.log(res);
@@ -70,7 +71,7 @@ export default function Detail({ res }) {
           {moment(res.date).format("yyyy-MM-DD")} : {res.time}
         </p>
         <Image
-          src={res.image.formats.medium.url}
+          src={res.image ? res.image.formats.medium.url : bg1}
           width={"1100px"}
           height={"750px"}
           className="object-contain"

@@ -2,6 +2,7 @@ import Layout from "../components/Layout";
 import NewestArticle from "../components/NewestArticle";
 import Truncate from "react-truncate";
 import Link from "next/link";
+import bg1 from "../public/bg1.jpg";
 import Image from "next/image";
 import marked from "marked";
 import moment from "moment";
@@ -21,7 +22,7 @@ export default function blog({ res, recent }) {
                 slug={item.slug}
                 date={moment(item.date).format("yyyy-MM-DD")}
                 time={item.time}
-                image={item.image.formats.thumbnail.url}
+                image={item.image ? item.image.formats.thumbnail.url : bg1}
                 detail={item.detail}
               />
             ))}
@@ -35,14 +36,12 @@ export default function blog({ res, recent }) {
               className="flex justify-between space-y-5 w-full items-center mb-2 shadow-md p-4 hover:bg-white duration-300"
             >
               <div>
-                {item.image && (
-                  <Image
-                    src={item.image.formats.thumbnail.url}
-                    width={300}
-                    height={168}
-                    className="object-contain"
-                  />
-                )}
+                <Image
+                  src={item.image ? item.image.formats.thumbnail.url : bg1}
+                  width={300}
+                  height={168}
+                  className="object-contain"
+                />
               </div>
               <div className="flex flex-col space-y-4 justify-items-center w-3/4 ">
                 <div className="flex flex-col justify-between">

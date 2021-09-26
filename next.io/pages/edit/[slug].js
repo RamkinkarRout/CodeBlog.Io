@@ -2,6 +2,7 @@ import Layout from "../../components/Layout";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import Link from "next/link";
+import Image from "next/image";
 import {
   RiFileTextFill,
   RiHomeWifiFill,
@@ -10,6 +11,7 @@ import {
 import "react-toastify/dist/ReactToastify.css";
 import router from "next/router";
 import moment from "moment";
+import PopupModal from "../../components/PopupModal";
 export default function edit({ res }) {
   const [values, setvalues] = useState({
     title: res.title,
@@ -20,6 +22,9 @@ export default function edit({ res }) {
   });
 
   const { title, subtitle, date, time, detail } = values;
+  const [imagePreview, setImagePreview] = useState(
+    res.image ? res.image.formats.thumbnail.url : null
+  );
 
   const handelSubmit = async (e) => {
     e.preventDefault();
@@ -50,6 +55,14 @@ export default function edit({ res }) {
     const { name, value } = e.target;
     // console.log(name, value);
     setvalues({ ...values, [name]: value });
+  };
+  // -----------image upload --------------
+  const imageUpload = async (e) => {
+    const res = await fetch(`http://localhost:1337/codes/${res.id}`);
+    console.log(res.id);
+    const data = await res.json();
+    setImagePreview(data.image.formats.thumbnail.url);
+    console.log("success");
   };
   return (
     <Layout title={"Code.Io | Dashboard"}>
@@ -158,7 +171,8 @@ export default function edit({ res }) {
                 onChange={handelInputChange}
               />
             </div>
-            <div className="mb-4 flex items-center space-x-4">
+
+            <div className="my-4 flex items-center space-x-4 justify-center">
               <input
                 type="submit"
                 value="Update Article"
@@ -172,6 +186,19 @@ export default function edit({ res }) {
               </Link>
             </div>
           </form>
+          <div className="p-4 space-y-4">
+            {imagePreview ? (
+              <Image
+                src={imagePreview}
+                width={"200px"}
+                height={"200px"}
+                className="object-contain"
+              />
+            ) : (
+              <p>No Image Available</p>
+            )}
+            <PopupModal imageUpload={imageUpload} codesId={res.id} />
+          </div>
         </div>
       </div>
     </Layout>

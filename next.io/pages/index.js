@@ -5,6 +5,8 @@ import Random_Code from "../components/Random_Code";
 import Recent_Code from "../components/Recent_Code";
 import router from "next/router";
 import moment from "moment";
+import bg1 from "../public/bg1.jpg";
+import { RiLandscapeFill } from "react-icons/ri";
 export default function Home({ res, random, recent }) {
   // console.log(random);
   return (
@@ -22,7 +24,7 @@ export default function Home({ res, random, recent }) {
               slug={random.slug}
               date={moment(random.date).format("yyyy-MM-DD")}
               time={random.time}
-              image={random.image.formats.medium.url}
+              image={random.image ? random.image.formats.medium.url : bg1}
               detail={random.detail}
             />
           </div>
@@ -39,7 +41,7 @@ export default function Home({ res, random, recent }) {
                   slug={item.slug}
                   date={moment(item.date).format("yyyy-MM-DD")}
                   time={item.time}
-                  image={item.image.formats.thumbnail.url}
+                  image={item.image ? item.image.formats.medium.url : bg1}
                   detail={item.detail}
                 />
               ))}
@@ -59,7 +61,7 @@ export default function Home({ res, random, recent }) {
                   slug={item.slug}
                   date={moment(item.date).format("yyyy-MM-DD")}
                   time={item.time}
-                  image={item.image.formats.thumbnail.url}
+                  image={item.image ? item.image.formats.medium.url : bg1}
                   detail={item.detail}
                 />
               ))}
